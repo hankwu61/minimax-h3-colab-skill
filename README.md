@@ -12,7 +12,7 @@ This repository is a standalone Codex skill for creating short MiniMax H3 Ref2VA
 ## Quick start / 快速開始
 
 ```bash
-git clone <repository-url> minimax-h3-colab-skill
+git clone https://github.com/killkli/minimax-h3-colab-skill.git
 cd minimax-h3-colab-skill
 ./install.sh
 uv python install 3.12
