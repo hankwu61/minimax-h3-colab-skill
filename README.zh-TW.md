@@ -16,7 +16,7 @@
 - 已安裝 Codex。設定 `CODEX_HOME` 時，技能會安裝到 `$CODEX_HOME/skills`；未設定時會安裝到 `~/.codex/skills`。
 - Python 3.11 以上版本，用於執行內附 runner。runner 只使用 Python 標準函式庫。
 - [`uv`](https://docs.astral.sh/uv/)，用來安裝 Colab CLI；也可以用其他方式讓 `colab` 出現在 `PATH`。
-- [`google-colab-cli`](https://pypi.org/project/google-colab-cli/)。本 runner 已用 Colab CLI 0.7.4 驗證，使用文件所列的 `version`、`usage`、`new`、`upload`、`exec`、`download`、`stop` 指令。
+- [`google-colab-cli`](https://pypi.org/project/google-colab-cli/)。本 runner 已用 Colab CLI 0.7.4 驗證，使用文件所列的 `version`、`usage`、`new`、`upload`、`exec`、`download`、`stop` 指令。目前的 CLI 版本需要 Python 3.12 以上；`uv` 可以另外管理 CLI 使用的 Python，不影響 runner 的 Python 3.11 以上需求。
 - 可使用 Colab compute units 且能配置 GPU 的 Google 帳號。A100 或其他高記憶體 runtime 可能需要對應的 Colab 方案與足夠餘額。
 
 如果系統有安裝選用的 `ffprobe`，runner 會檢查下載的 MP4 是否同時包含視訊與音訊串流。沒有 `ffprobe` 時，仍會檢查檔案存在且大小不為零。
@@ -58,7 +58,8 @@ $CODEX_HOME/skills/minimax-h3-colab
 以使用者工具安裝 CLI：
 
 ```bash
-uv tool install google-colab-cli
+uv python install 3.12
+uv tool install --python 3.12 google-colab-cli
 ```
 
 確認 CLI 可以使用：

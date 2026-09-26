@@ -15,9 +15,14 @@ This repository is a standalone Codex skill for creating short MiniMax H3 Ref2VA
 git clone <repository-url> minimax-h3-colab-skill
 cd minimax-h3-colab-skill
 ./install.sh
-uv tool install google-colab-cli
+uv python install 3.12
+uv tool install --python 3.12 google-colab-cli
 colab --auth=oauth2 usage
 ```
+
+The runner itself supports Python 3.11 and newer. The current Google Colab CLI
+release needs Python 3.12 or newer; `uv python install` supplies it without
+changing the Studio or system Python.
 
 第一次執行 `usage` 時，Colab CLI 會引導 Google OAuth2 授權。完成授權後，可用下列命令啟動一次推論：
 

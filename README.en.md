@@ -16,7 +16,7 @@ The local machine only prepares and uploads inputs. Model inference runs on the 
 - A working Codex installation. The skill is installed into `$CODEX_HOME/skills` when `CODEX_HOME` is set, otherwise into `~/.codex/skills`.
 - Python 3.11 or newer for the bundled runner. The runner uses only the Python standard library.
 - [`uv`](https://docs.astral.sh/uv/) for installing the Colab CLI, or another supported way to put `colab` on `PATH`.
-- [`google-colab-cli`](https://pypi.org/project/google-colab-cli/). The runner was validated with Colab CLI 0.7.4 and uses the documented `version`, `usage`, `new`, `upload`, `exec`, `download`, and `stop` commands.
+- [`google-colab-cli`](https://pypi.org/project/google-colab-cli/). The runner was validated with Colab CLI 0.7.4 and uses the documented `version`, `usage`, `new`, `upload`, `exec`, `download`, and `stop` commands. The current CLI release requires Python 3.12 or newer; `uv` can install that interpreter separately from the runner's Python 3.11+ requirement.
 - A Google account with access to Colab compute units and a GPU shape that can be allocated. An A100 or equivalent high-memory runtime may require the appropriate Colab plan and available balance.
 
 The optional `ffprobe` program is used to verify that a downloaded MP4 contains both video and audio streams. If `ffprobe` is not installed, the runner still checks that the file exists and is non-empty.
@@ -58,7 +58,8 @@ After installation, start a new Codex turn or reload the skill list if your Code
 Install the CLI as a user tool:
 
 ```bash
-uv tool install google-colab-cli
+uv python install 3.12
+uv tool install --python 3.12 google-colab-cli
 ```
 
 Confirm that it is available:
