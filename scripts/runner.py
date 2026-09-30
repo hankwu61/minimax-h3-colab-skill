@@ -122,11 +122,17 @@ def call_colab(
     while not eof or child.poll() is None:
         if time.monotonic() - started > timeout and child.poll() is None:
             try:
-                os.killpg(child.pid, signal.SIGTERM)
+                if hasattr(os, "killpg"):
+                    os.killpg(child.pid, signal.SIGTERM)
+                else:
+                    child.terminate()
                 child.wait(timeout=5)
             except (ProcessLookupError, subprocess.TimeoutExpired):
                 try:
-                    os.killpg(child.pid, signal.SIGKILL)
+                    if hasattr(os, "killpg"):
+                        os.killpg(child.pid, signal.SIGKILL)
+                    else:
+                        child.kill()
                 except ProcessLookupError:
                     pass
             reader.join(timeout=2)

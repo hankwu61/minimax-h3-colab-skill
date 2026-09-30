@@ -1,0 +1,26 @@
+{
+  "jobs": [
+    {
+      "id": "clip1",
+      "title": "Shot 1 & 2 - Secret Meeting",
+      "reference_images": [
+        "assets/inputs/picture_1_minister.jpg",
+        "assets/inputs/picture_2_consort.jpg"
+      ],
+      "prompt_file": "assets/inputs/clip1_prompt.txt",
+      "duration_seconds": 12,
+      "output_name": "weiyang_clip1"
+    },
+    {
+      "id": "clip2",
+      "title": "Shot 3 & 4 - Bloodbath Vow",
+      "reference_images": [
+        "assets/inputs/picture_1_minister.jpg",
+        "assets/inputs/picture_2_consort.jpg"
+      ],
+      "prompt_file": "assets/inputs/clip2_prompt.txt",
+      "duration_seconds": 12,
+      "output_name": "weiyang_clip2"
+    }
+  ]
+}

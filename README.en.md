@@ -1,19 +1,20 @@
 # MiniMax H3 Colab Skill
 
-This repository is a complete, standalone Codex skill for creating short MiniMax H3 Ref2VA videos from local reference images through Google Colab. Clone it, install the skill, authenticate the Colab CLI, and invoke the included runner or shell launcher. The repository contains:
+This repository is a complete, standalone skill for **Gemini CLI** and **Codex** for creating short MiniMax H3 Ref2VA videos from local reference images through Google Colab. Clone it, install the skill, authenticate the Colab CLI, and invoke the included runner or launcher. The repository contains:
 
-- `SKILL.md`: the instructions Codex loads when this skill is selected;
+- `SKILL.md`: the instructions Gemini CLI or Codex loads when this skill is selected;
 - `scripts/runner.py`: the session, usage, upload, batch, download, and cleanup runner;
 - `assets/MiniMax_H3_Turbo_Colab.ipynb`: the notebook executed on the remote Colab runtime;
 - `run_colab_inference.sh`: a convenient single-video launcher;
-- `install.sh`: a portable, non-destructive skill installer;
+- `install.ps1`: Windows native PowerShell installer supporting Gemini CLI and Codex;
+- `install.sh`: portable, non-destructive Shell skill installer;
 - `tests/test_runner.py`: offline tests using a fake Colab CLI.
 
 The local machine only prepares and uploads inputs. Model inference runs on the Colab GPU and the finished MP4 is downloaded back to the path you choose.
 
 ## Requirements
 
-- A working Codex installation. The skill is installed into `$CODEX_HOME/skills` when `CODEX_HOME` is set, otherwise into `~/.codex/skills`.
+- A working **Gemini CLI** (skills installed into `~/.gemini/skills`) or **Codex** (`~/.codex/skills`).
 - Python 3.11 or newer for the bundled runner. The runner uses only the Python standard library.
 - [`uv`](https://docs.astral.sh/uv/) for installing the Colab CLI, or another supported way to put `colab` on `PATH`.
 - [`google-colab-cli`](https://pypi.org/project/google-colab-cli/). The runner was validated with Colab CLI 0.7.4 and uses the documented `version`, `usage`, `new`, `upload`, `exec`, `download`, and `stop` commands. The current CLI release requires Python 3.12 or newer; `uv` can install that interpreter separately from the runner's Python 3.11+ requirement.
@@ -26,32 +27,41 @@ The optional `ffprobe` program is used to verify that a downloaded MP4 contains 
 ```bash
 git clone <repository-url> minimax-h3-colab-skill
 cd minimax-h3-colab-skill
+```
+
+### Windows (PowerShell)
+```powershell
+# Default installs to Gemini CLI (~/.gemini/skills/minimax-h3-colab)
+.\install.ps1
+
+# Or install to Codex
+.\install.ps1 -Codex
+
+# Or install to both
+.\install.ps1 -All
+
+# Use -Force to overwrite an existing install:
+.\install.ps1 -Force
+```
+
+### macOS / Linux (Bash)
+```bash
+# Default installs to Gemini CLI (~/.gemini/skills/minimax-h3-colab)
 ./install.sh
-```
 
-The installer copies the required skill files to:
+# Or install to Codex
+./install.sh --codex
 
-```text
-$CODEX_HOME/skills/minimax-h3-colab
-```
+# Or install to both
+./install.sh --all
 
-When `CODEX_HOME` is unset, the destination is `~/.codex/skills/minimax-h3-colab`.
-
-Use an explicit skills directory when testing or when your Codex configuration is elsewhere:
-
-```bash
-./install.sh --dest /absolute/path/to/codex/skills
-```
-
-The default operation is idempotent and non-destructive. If the destination already exists, the installer leaves it unchanged and exits successfully. To replace it deliberately, use `--force`; the old directory is first moved to a timestamped `.backup.*` path so it can be recovered:
-
-```bash
+# Use --force to overwrite an existing install:
 ./install.sh --force
 ```
 
-The installer uses a temporary directory and an atomic rename for a new installation. It never copies the repository's Git metadata, tests, README files, or generated output into the installed skill; only `SKILL.md`, `scripts/`, and `assets/` are installed.
+The installer never copies Git metadata, tests, README files, or generated output into the installed skill; only `SKILL.md`, `scripts/`, and `assets/` are installed.
 
-After installation, start a new Codex turn or reload the skill list if your Codex client caches available skills. The skill name is `minimax-h3-colab`.
+After installation, start a new session or refresh skills. The skill name is `minimax-h3-colab`.
 
 ## Install and authenticate Colab CLI
 

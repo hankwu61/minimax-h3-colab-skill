@@ -1,0 +1,20 @@
+subject_definitions:
+- S1: The 30-year-old male imperial minister in <Picture 1>, dignified, wearing black robes with gold candlelight rim light.
+- S2: The 25-year-old noble consort in <Picture 2>, cold and resolute gaze, cinnabar lips, wearing dark teal embroidered crane cloak.
+
+summary:
+A secret midnight meeting in an ancient palace between a powerful minister and a cold consort planning treason.
+
+retention_analysis:
+Intense dramatic confrontation with dialogue lip sync and cinematic atmosphere inspired by The Grandmaster and Shadow.
+
+detailed_description:
+[Shot 1] Cinematic photorealistic 35mm film style. Ancient Chinese palace chamber lit by a single bronze candlestick. The minister (S1) standing by an ebony table in three-quarter profile, camera slowly tracking in. The minister (S1) says, <d>[Chinese] 娘娘深夜召微臣至此，就不怕隔牆有耳？</d>
+
+[Shot 2] At 00:06.000, the camera cuts to a close-up three-quarter profile of the noble consort (S2) seated at the table, cold candlelight reflected in her resolute eyes. The consort (S2) says, <d>[Chinese] 這座冷宮裡，本宮如今能信的……只有你。</d>
+
+overall_soundscape:
+Urgent night rain beating against courtyard roof tiles, subtle crackling of the candle wick, soft rustle of silk robes.
+
+non_diegetic_music:
+Low resonant cello drone underscored by solitary, crisp guqin plucks, dark and refined.

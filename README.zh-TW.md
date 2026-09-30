@@ -1,19 +1,20 @@
 # MiniMax H3 Colab 技能
 
-這是一個完整、可獨立使用的 Codex 技能儲存庫，能將本機參照圖片交給 Google Colab，製作短篇 MiniMax H3 Ref2VA 影片。使用者可以直接 clone、安裝技能、完成 Colab CLI 登入，再使用內附的 runner 或 Shell 啟動器。儲存庫包含：
+這是一個完整、可獨立使用的技能儲存庫，支援 **Gemini CLI** 與 **Codex**，能將本機參照圖片交給 Google Colab，製作短篇 MiniMax H3 Ref2VA 影片。使用者可以直接 clone、安裝技能、完成 Colab CLI 登入，再使用內附的 runner 或 Shell 啟動器。儲存庫包含：
 
-- `SKILL.md`：Codex 選用此技能時讀取的指示；
+- `SKILL.md`：Gemini CLI 或 Codex 選用此技能時讀取的指示；
 - `scripts/runner.py`：管理 session、查詢用量、上傳檔案、批次執行、下載與清理的 runner；
 - `assets/MiniMax_H3_Turbo_Colab.ipynb`：在遠端 Colab runtime 執行的推論 Notebook；
 - `run_colab_inference.sh`：單支影片的便利啟動器；
-- `install.sh`：可攜、可重複執行且預設不覆蓋舊檔的技能安裝程式；
+- `install.ps1`：Windows 原生 PowerShell 技能安裝程式（支援 Gemini CLI 與 Codex）；
+- `install.sh`：可攜、可重複執行且預設不覆蓋舊檔的 Shell 技能安裝程式；
 - `tests/test_runner.py`：使用假的 Colab CLI 執行、不會消耗額度的 runner 測試。
 
 本機電腦只負責準備與上傳輸入檔案；模型推論會在 Colab GPU 執行，完成的 MP4 再下載回指定位置。
 
 ## 需求
 
-- 已安裝 Codex。設定 `CODEX_HOME` 時，技能會安裝到 `$CODEX_HOME/skills`；未設定時會安裝到 `~/.codex/skills`。
+- 已安裝 **Gemini CLI**（預設安裝至 `~/.gemini/skills`）或 **Codex**（`~/.codex/skills`）。
 - Python 3.11 以上版本，用於執行內附 runner。runner 只使用 Python 標準函式庫。
 - [`uv`](https://docs.astral.sh/uv/)，用來安裝 Colab CLI；也可以用其他方式讓 `colab` 出現在 `PATH`。
 - [`google-colab-cli`](https://pypi.org/project/google-colab-cli/)。本 runner 已用 Colab CLI 0.7.4 驗證，使用文件所列的 `version`、`usage`、`new`、`upload`、`exec`、`download`、`stop` 指令。目前的 CLI 版本需要 Python 3.12 以上；`uv` 可以另外管理 CLI 使用的 Python，不影響 runner 的 Python 3.11 以上需求。
@@ -26,32 +27,41 @@
 ```bash
 git clone <repository-url> minimax-h3-colab-skill
 cd minimax-h3-colab-skill
+```
+
+### Windows (PowerShell)
+```powershell
+# 預設安裝至 Gemini CLI (~/.gemini/skills/minimax-h3-colab)
+.\install.ps1
+
+# 安裝至 Codex
+.\install.ps1 -Codex
+
+# 同時安裝至 Gemini CLI 與 Codex
+.\install.ps1 -All
+
+# 若已有舊安裝想強制覆蓋更新：
+.\install.ps1 -Force
+```
+
+### macOS / Linux (Bash)
+```bash
+# 預設安裝至 Gemini CLI (~/.gemini/skills/minimax-h3-colab)
 ./install.sh
-```
 
-安裝程式會把必要檔案複製到：
+# 安裝至 Codex
+./install.sh --codex
 
-```text
-$CODEX_HOME/skills/minimax-h3-colab
-```
+# 同時安裝至 Gemini CLI 與 Codex
+./install.sh --all
 
-如果沒有設定 `CODEX_HOME`，目的地是 `~/.codex/skills/minimax-h3-colab`。
-
-需要指定其他技能目錄時（例如測試或使用不同的 Codex 設定），可以明確傳入：
-
-```bash
-./install.sh --dest /absolute/path/to/codex/skills
-```
-
-預設行為是可重複執行且不會破壞既有安裝。如果目的地已存在，安裝程式會保留原目錄並正常結束。要明確替換既有版本時才使用 `--force`；舊目錄會先移到帶時間戳記的 `.backup.*` 路徑，方便復原：
-
-```bash
+# 若已有舊安裝想強制覆蓋更新：
 ./install.sh --force
 ```
 
-安裝新的技能時，程式會先寫入暫存目錄，再以原子重新命名完成安裝。安裝到 Codex 的內容只有 `SKILL.md`、`scripts/` 與 `assets/`，不會把 Git 資料、測試、README 或輸出檔複製進去。
+安裝到 AI CLI 工具的內容只有 `SKILL.md`、`scripts/` 與 `assets/`，不會把 Git 資料、測試、README 或輸出檔複製進去。
 
-安裝完成後，請在 Codex 開啟新的回合，或重新整理技能清單（若 Codex 用戶端會快取可用技能）。技能名稱是 `minimax-h3-colab`。
+安裝完成後，請在 Gemini CLI 或 Codex 開啟新的對話回合，即可載入使用此技能（技能名稱為 `minimax-h3-colab`）。
 
 ## 安裝並授權 Colab CLI
 

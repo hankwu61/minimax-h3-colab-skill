@@ -1,0 +1,20 @@
+subject_definitions:
+- S1: The 30-year-old male imperial minister in <Picture 1>, dignified, wearing black robes with gold candlelight rim light.
+- S2: The 25-year-old noble consort in <Picture 2>, cold and resolute gaze, cinnabar lips, wearing dark teal embroidered crane cloak.
+
+summary:
+The continuation of the secret midnight meeting where the minister warns of doom and the consort pledges blood.
+
+retention_analysis:
+Climactic vow of vengeance with sharp tension and exact Mandarin lip sync.
+
+detailed_description:
+[Shot 1] Cinematic photorealistic 35mm film style. Close-up three-quarter angle of the minister (S1) leaning slightly over the dark ebony table with deep, solemn gaze. The minister (S1) says, <d>[Chinese] 信我的代價，可是萬劫不復。</d>
+
+[Shot 2] At 00:06.000, the camera cuts to an extreme close-up three-quarter profile of the consort (S2), night breeze lightly stirring hairs at her temple, gaze sharp like ice. The consort (S2) says, <d>[Chinese] 那便如你所願，血洗未央宮。</d>
+
+overall_soundscape:
+Rain intensifies outside, candle flame flickers slightly, faint metallic chime of a dagger drawing half an inch from its scabbard.
+
+non_diegetic_music:
+Low heavy cello swell building in oppressive tension, accented by a single poignant guqin chord.

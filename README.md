@@ -1,8 +1,8 @@
 # MiniMax H3 Colab Skill
 
-This repository is a standalone Codex skill for creating short MiniMax H3 Ref2VA videos from local reference images through Google Colab. It includes the skill instructions, the inference notebook, a Python runner, a shell launcher, an idempotent installer, and runner tests.
+This repository is a standalone skill for **Gemini CLI** and **Codex** for creating short MiniMax H3 Ref2VA videos from local reference images through Google Colab. It includes the skill instructions, the inference notebook, a Python runner, a shell launcher, idempotent installers for Windows (PowerShell) and Linux/macOS (Bash), and runner tests.
 
-本儲存庫是可獨立使用的 Codex 技能，用於透過 Google Colab 將本機參照圖片製作成短篇 MiniMax H3 Ref2VA 影片。內容包含技能指示、推論 Notebook、Python runner、Shell 啟動器、可重複執行的安裝程式，以及 runner 測試。
+本儲存庫是可獨立使用的技能，支援 **Gemini CLI** 與 **Codex**，用於透過 Google Colab 將本機參照圖片製作成短篇 MiniMax H3 Ref2VA 影片。內容包含技能指示、推論 Notebook、Python runner、Shell 啟動器、Windows 與 macOS/Linux 安裝程式，以及 runner 測試。
 
 ## Documentation
 
@@ -12,9 +12,23 @@ This repository is a standalone Codex skill for creating short MiniMax H3 Ref2VA
 ## Quick start / 快速開始
 
 ```bash
-git clone https://github.com/killkli/minimax-h3-colab-skill.git
+git clone https://github.com/hankwu61/minimax-h3-colab-skill.git
 cd minimax-h3-colab-skill
-./install.sh
+```
+
+**Windows (PowerShell):**
+```powershell
+.\install.ps1                       # Install to Gemini CLI (~/.gemini/skills)
+# .\install.ps1 -Codex              # Or install to Codex (~/.codex/skills)
+uv python install 3.12
+uv tool install --python 3.12 google-colab-cli
+colab --auth=oauth2 usage
+```
+
+**macOS / Linux (Bash):**
+```bash
+./install.sh                        # Install to Gemini CLI (~/.gemini/skills)
+# ./install.sh --codex              # Or install to Codex (~/.codex/skills)
 uv python install 3.12
 uv tool install --python 3.12 google-colab-cli
 colab --auth=oauth2 usage
